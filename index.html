@@ -148,12 +148,12 @@ textarea{
 // (All unchanged — only URLs updated below)
 
 // === UPDATE: n8n URLs ===
-const N8N_BASE = 'https://crysta-planar-darlene.ngrok-free.dev';
+const N8N_BASE = 'http://localhost:5678/';
 
 // === Load form options ===
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const res = await fetch(`${N8N_BASE}/webhook/get-form-options`);
+    const res = await fetch(`${N8N_BASE}/webhook/OPTIONS`);
     if (!res.ok) throw new Error();
     const json = await res.json();
     const data = json[0]?.result || {};
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // === Load company data ===
 async function loadCompanyData(name) {
   try {
-    const res = await fetch(`${N8N_BASE}/webhook/get-company-full-data`, {
+    const res = await fetch(`${N8N_BASE}/webhook/b12-form-submission`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({company_name: name})
